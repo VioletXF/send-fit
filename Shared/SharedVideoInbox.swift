@@ -21,6 +21,7 @@ enum SharedVideoInboxError: Error, LocalizedError, Sendable {
 
 struct SharedVideoInbox: Sendable {
     static let appGroupIdentifier = "group.com.sendfit.app"
+    static let staleVideoRetention: TimeInterval = 7 * 24 * 60 * 60
 
     private let containerURL: URL?
 
@@ -31,6 +32,7 @@ struct SharedVideoInbox: Sendable {
     func stageVideo(from sourceURL: URL) throws {
         let inboxURL = try inboxURL()
         try FileManager.default.createDirectory(at: inboxURL, withIntermediateDirectories: true)
+        try pruneStaleVideos(olderThan: Date().addingTimeInterval(-Self.staleVideoRetention))
         let pathExtension = sourceURL.pathExtension.isEmpty ? "mp4" : sourceURL.pathExtension.lowercased()
         let destinationURL = inboxURL.appendingPathComponent("\(UUID().uuidString).\(pathExtension)")
         try FileManager.default.copyItem(at: sourceURL, to: destinationURL)
@@ -64,6 +66,33 @@ struct SharedVideoInbox: Sendable {
             return
         }
         try? FileManager.default.removeItem(at: url)
+    }
+
+    func pruneStaleVideos(olderThan cutoff: Date) throws {
+        guard let containerURL else { return }
+        let inboxURL = containerURL.appendingPathComponent("SharedVideos", isDirectory: true)
+        guard FileManager.default.fileExists(atPath: inboxURL.path) else { return }
+
+        let manifestURL = manifestURL(in: inboxURL)
+        let protectedFileName: String?
+        if let manifestData = try? Data(contentsOf: manifestURL) {
+            protectedFileName = try? JSONDecoder().decode(SharedVideoHandoffManifest.self, from: manifestData).fileName
+        } else {
+            protectedFileName = nil
+        }
+        let files = try FileManager.default.contentsOfDirectory(
+            at: inboxURL,
+            includingPropertiesForKeys: [.contentModificationDateKey, .isRegularFileKey],
+            options: [.skipsHiddenFiles]
+        )
+
+        for fileURL in files where fileURL != manifestURL && fileURL.lastPathComponent != protectedFileName {
+            let values = try fileURL.resourceValues(forKeys: [.contentModificationDateKey, .isRegularFileKey])
+            guard values.isRegularFile == true,
+                  let modificationDate = values.contentModificationDate,
+                  modificationDate < cutoff else { continue }
+            try FileManager.default.removeItem(at: fileURL)
+        }
     }
 
     private func inboxURL() throws -> URL {

@@ -130,6 +130,9 @@ final class SendFitModel {
             return
         }
         do {
+            try sharedVideoInbox.pruneStaleVideos(
+                olderThan: Date().addingTimeInterval(-SharedVideoInbox.staleVideoRetention)
+            )
             guard let sharedURL = try sharedVideoInbox.consumePendingVideoURL() else { return }
             defer { sharedVideoInbox.removeSharedVideo(at: sharedURL) }
             phase = .selected(try await incomingRouter.route([sharedURL], compressionIsActive: false))
