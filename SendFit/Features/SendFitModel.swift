@@ -26,11 +26,13 @@ final class SendFitModel {
     var isShowingFileImporter = false
     var isShowingShareSheet = false
     var privacyOptionsRequired = false
+    var isSavingResult = false
+    var saveConfirmationMessage: String?
 
     private let importService: VideoImportService
     private let incomingRouter: IncomingVideoRouter
     private let compressionService: VideoCompressionService
-    private let exportService: ExportService
+    private let exportService: any PhotoLibrarySaving
     private let consentManager: any ConsentManaging
     private let adService: any AdServing
     private let entitlement: any EntitlementProviding
@@ -42,7 +44,7 @@ final class SendFitModel {
         importService: VideoImportService = VideoImportService(),
         incomingRouter: IncomingVideoRouter = IncomingVideoRouter(),
         compressionService: VideoCompressionService = VideoCompressionService(),
-        exportService: ExportService = ExportService(),
+        exportService: any PhotoLibrarySaving = ExportService(),
         consentManager: any ConsentManaging = ConsentManager(),
         adService: any AdServing = AdService(),
         entitlement: any EntitlementProviding = FreeEntitlementProvider(),
@@ -161,9 +163,14 @@ final class SendFitModel {
     }
 
     func saveResult() async {
-        guard let result else { return }
+        guard let result, !isSavingResult else { return }
+        isSavingResult = true
+        errorMessage = nil
+        saveConfirmationMessage = nil
+        defer { isSavingResult = false }
         do {
             try await exportService.saveToPhotos(result)
+            saveConfirmationMessage = "Saved to Photos."
         } catch {
             errorMessage = error.localizedDescription
         }

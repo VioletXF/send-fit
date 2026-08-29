@@ -26,10 +26,16 @@ struct CompressionResultView: View {
                     .multilineTextAlignment(.center)
                 VStack(spacing: 12) {
                     Button { Task { await model.saveResult() } } label: {
-                        Label("Save Video", systemImage: "square.and.arrow.down")
+                        Label(model.isSavingResult ? "Saving…" : "Save Video", systemImage: "square.and.arrow.down")
                             .frame(maxWidth: .infinity)
                     }
                     .buttonStyle(.borderedProminent)
+                    .disabled(model.isSavingResult)
+                    if let saveConfirmationMessage = model.saveConfirmationMessage {
+                        Label(saveConfirmationMessage, systemImage: "checkmark.circle.fill")
+                            .font(.subheadline)
+                            .foregroundStyle(.green)
+                    }
                     Button { model.showShareSheet() } label: {
                         Label("Share", systemImage: "square.and.arrow.up")
                             .frame(maxWidth: .infinity)
