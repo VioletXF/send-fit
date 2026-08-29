@@ -30,6 +30,11 @@ struct SendFitRootView: View {
         }
         .task { await model.initialize() }
         .onChange(of: photosItem) { _, item in
+            guard let item else { return }
+            // PhotosPicker retains its bound item between presentations. Clear it
+            // before importing so selecting the same video in a later session is
+            // treated as a new selection rather than reusing stale picker state.
+            photosItem = nil
             Task { await model.handlePhotosPicker(item) }
         }
         .fileImporter(isPresented: $model.isShowingFileImporter, allowedContentTypes: [.movie], allowsMultipleSelection: false) { result in
