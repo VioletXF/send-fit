@@ -20,6 +20,8 @@ final class SendFitModel {
     var targetSizeMB: Double = 25
     var customTargetText = ""
     var compressionPriority: CompressionPriority = .frameRate
+    var isAdvancedMode = false
+    var videoBitrateKbps = 1_000.0
     var progress = 0.0
     var stage = "Preparing…"
     var errorMessage: String?
@@ -91,6 +93,13 @@ final class SendFitModel {
         return Int64(megabytes * 1_000_000)
     }
 
+    var videoBitrateOverride: Int? {
+        guard isAdvancedMode, videoBitrateKbps >= Double(CompressionEstimator.minimumVideoBitrate / 1_000) else {
+            return nil
+        }
+        return Int(videoBitrateKbps * 1_000)
+    }
+
     func initialize() async {
         await consentManager.refresh(from: topViewController())
         privacyOptionsRequired = consentManager.privacyOptionsRequired
@@ -155,7 +164,11 @@ final class SendFitModel {
             do {
                 let result = try await self.compressionService.compress(
                     source: source,
-                    request: CompressionRequest(targetSizeBytes: targetSizeBytes, priority: compressionPriority)
+                    request: CompressionRequest(
+                        targetSizeBytes: targetSizeBytes,
+                        priority: compressionPriority,
+                        videoBitrateOverride: videoBitrateOverride
+                    )
                 ) { [weak self] progress, stage in
                     Task { @MainActor in
                         self?.progress = progress

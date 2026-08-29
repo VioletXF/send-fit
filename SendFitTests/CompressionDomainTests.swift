@@ -6,6 +6,19 @@ final class CompressionDomainTests: XCTestCase {
         XCTAssertEqual(CompressionTargetPreset.twentyMegabytes.targetSizeBytes, 20_000_000)
     }
 
+    func testVideoBitrateOverrideUsesRequestedRateWithinTargetBudget() throws {
+        let request = CompressionRequest(
+            targetSizeBytes: 10_000_000,
+            priority: .resolution,
+            videoBitrateOverride: 500_000
+        )
+        let source = CompressionSourceInfo(duration: 60, width: 1920, height: 1080, frameRate: 30, hasAudio: true)
+
+        let plan = try CompressionEstimator().makePlan(for: request, source: source)
+
+        XCTAssertEqual(plan.videoBitrate, 500_000)
+    }
+
     func testPlanForSixtySecondVideoAtTenMegabytesReservesAudioAndSafetyMargin() throws {
         let request = CompressionRequest(targetSizeBytes: 10_000_000)
         let source = CompressionSourceInfo(duration: 60, width: 1920, height: 1080, frameRate: 30, hasAudio: true)

@@ -13,7 +13,7 @@ struct SendFitRootView: View {
                 case .empty:
                     EmptyStateView(openFiles: { model.isShowingFileImporter = true }, photosItem: $photosItem)
                 case .selected(let asset):
-                    SelectedVideoView(asset: asset, model: model)
+                    SelectedVideoView(asset: asset, model: model, photosItem: $photosItem)
                 case .compressing(let asset):
                     CompressionProgressView(asset: asset, model: model)
                 case .result(let result):

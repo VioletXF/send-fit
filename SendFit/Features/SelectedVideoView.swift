@@ -1,9 +1,11 @@
 import AVKit
+import PhotosUI
 import SwiftUI
 
 struct SelectedVideoView: View {
     let asset: VideoAsset
     @Bindable var model: SendFitModel
+    @Binding var photosItem: PhotosPickerItem?
 
     var body: some View {
         ScrollView {
@@ -16,6 +18,21 @@ struct SelectedVideoView: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(asset.displayName).font(.headline).lineLimit(1)
                     MetadataGrid(asset: asset)
+                }
+
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Video").font(.headline)
+                    HStack {
+                        PhotosPicker(selection: $photosItem, matching: .videos) {
+                            Label("Choose from Photos", systemImage: "photo.on.rectangle")
+                        }
+                        Button {
+                            model.isShowingFileImporter = true
+                        } label: {
+                            Label("Browse Files", systemImage: "folder")
+                        }
+                    }
+                    .buttonStyle(.bordered)
                 }
 
                 VStack(alignment: .leading, spacing: 12) {
@@ -41,6 +58,27 @@ struct SelectedVideoView: View {
                         .font(.footnote)
                         .foregroundStyle(.secondary)
 
+                    DisclosureGroup("Advanced") {
+                        Toggle("Set video bitrate", isOn: $model.isAdvancedMode)
+
+                        if model.isAdvancedMode {
+                            VStack(alignment: .leading, spacing: 6) {
+                                HStack {
+                                    Text("Video bitrate")
+                                    Spacer()
+                                    Text("\(Int(model.videoBitrateKbps)) kbps")
+                                        .monospacedDigit()
+                                        .foregroundStyle(.secondary)
+                                }
+                                Slider(value: $model.videoBitrateKbps, in: 150...10_000, step: 50)
+                                    .accessibilityLabel("Video bitrate")
+                                Text("SendFit uses this rate when it fits the selected size, and lowers it only if needed to honor the size limit.")
+                                    .font(.footnote)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                    }
+
                     if model.targetSizeMB == 0 {
                         TextField("Custom size in MB", text: $model.customTargetText)
                             .keyboardType(.decimalPad)
@@ -49,7 +87,11 @@ struct SelectedVideoView: View {
                     }
                     if let target = model.targetSizeBytes,
                        let plan = try? CompressionEstimator().makePlan(
-                        for: CompressionRequest(targetSizeBytes: target, priority: model.compressionPriority),
+                        for: CompressionRequest(
+                            targetSizeBytes: target,
+                            priority: model.compressionPriority,
+                            videoBitrateOverride: model.videoBitrateOverride
+                        ),
                         source: CompressionSourceInfo(duration: asset.duration, width: asset.dimensions.width, height: asset.dimensions.height, frameRate: asset.frameRate, hasAudio: asset.hasAudio)
                        ) {
                         Label("Estimated \(plan.outputSize.displayName), \(Int(plan.outputFrameRate.rounded())) fps", systemImage: "wand.and.stars")

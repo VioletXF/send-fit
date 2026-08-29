@@ -18,10 +18,16 @@ struct CompressionSourceInfo: Equatable, Sendable {
 struct CompressionRequest: Equatable, Sendable {
     let targetSizeBytes: Int64
     let priority: CompressionPriority
+    let videoBitrateOverride: Int?
 
-    init(targetSizeBytes: Int64, priority: CompressionPriority = .frameRate) {
+    init(
+        targetSizeBytes: Int64,
+        priority: CompressionPriority = .frameRate,
+        videoBitrateOverride: Int? = nil
+    ) {
         self.targetSizeBytes = targetSizeBytes
         self.priority = priority
+        self.videoBitrateOverride = videoBitrateOverride
     }
 }
 
@@ -85,7 +91,8 @@ struct CompressionEstimator: Sendable {
         let totalBitrate = Int((Double(request.targetSizeBytes) * 8 / source.duration).rounded(.down))
         let audioBitrate = source.hasAudio ? selectedAudioBitrate(totalBitrate: totalBitrate) : 0
         let safetyMargin = Int((Double(totalBitrate) * Self.safetyMarginFraction).rounded(.up))
-        let videoBitrate = totalBitrate - audioBitrate - safetyMargin
+        let availableVideoBitrate = totalBitrate - audioBitrate - safetyMargin
+        let videoBitrate = min(request.videoBitrateOverride ?? availableVideoBitrate, availableVideoBitrate)
         guard videoBitrate >= Self.minimumVideoBitrate else { throw CompressionPlanningError.targetTooSmall }
 
         let outputFrameRate: Double
