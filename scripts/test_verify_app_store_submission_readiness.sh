@@ -9,6 +9,12 @@ for entitlements_path in SendFit/SendFit.entitlements ShareExtension/ShareExtens
   fi
 done
 
+extension_point="$(/usr/libexec/PlistBuddy -c 'Print :NSExtension:NSExtensionPointIdentifier' ShareExtension/Info.plist 2>/dev/null || true)"
+if [[ "$extension_point" != "com.apple.ui-services" ]]; then
+  echo "SendFit's video handoff must be an Action extension." >&2
+  exit 1
+fi
+
 output=""
 status=0
 output="$(asdf exec bundle exec ruby scripts/verify_app_store_submission_readiness.rb 2>&1)" || status=$?

@@ -42,13 +42,11 @@ final class ShareViewController: UIViewController {
 
         do {
             try await stageVideo(from: provider)
-            guard let context = extensionContext, let url = URL(string: "sendfit://share") else {
-                throw SharedVideoInboxError.sharedContainerUnavailable
+            extensionContext?.completeRequest(returningItems: nil) { [weak self] _ in
+                Task { @MainActor [weak self] in
+                    _ = self?.openContainingApp()
+                }
             }
-            await withCheckedContinuation { continuation in
-                context.open(url) { _ in continuation.resume() }
-            }
-            context.completeRequest(returningItems: nil)
         } catch {
             finish(with: error.localizedDescription)
         }
@@ -114,6 +112,20 @@ final class ShareViewController: UIViewController {
         // The provider owns this URL. Copy while its completion handler is
         // active; retaining it afterwards is not supported by NSItemProvider.
         try SharedVideoInbox().stageVideo(from: url)
+    }
+
+    private func openContainingApp() -> Bool {
+        var responder: UIResponder? = self
+        let selector = NSSelectorFromString("openURL:")
+
+        while let currentResponder = responder {
+            if let application = currentResponder as? UIApplication,
+               application.responds(to: selector) {
+                return application.perform(selector, with: SharedVideoHandoff.containingAppLaunchURL) != nil
+            }
+            responder = currentResponder.next
+        }
+        return false
     }
 
     private func finish(with message: String) {

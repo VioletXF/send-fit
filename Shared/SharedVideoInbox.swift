@@ -1,5 +1,10 @@
 import Foundation
 
+enum SharedVideoHandoff {
+    static let containingAppLaunchURL = URL(string: "sendfit://share")!
+    static let mainAppLaunchUnavailableMessage = "Video is ready. Open SendFit to continue."
+}
+
 enum SharedVideoInboxError: Error, LocalizedError, Sendable {
     case sharedContainerUnavailable
     case invalidSharedVideo
@@ -29,7 +34,7 @@ struct SharedVideoInbox: Sendable {
         let pathExtension = sourceURL.pathExtension.isEmpty ? "mp4" : sourceURL.pathExtension.lowercased()
         let destinationURL = inboxURL.appendingPathComponent("\(UUID().uuidString).\(pathExtension)")
         try FileManager.default.copyItem(at: sourceURL, to: destinationURL)
-        let data = try JSONEncoder().encode(SharedVideoHandoff(fileName: destinationURL.lastPathComponent))
+        let data = try JSONEncoder().encode(SharedVideoHandoffManifest(fileName: destinationURL.lastPathComponent))
         try data.write(to: manifestURL(in: inboxURL), options: .atomic)
     }
 
@@ -42,7 +47,7 @@ struct SharedVideoInbox: Sendable {
         let manifestURL = manifestURL(in: inboxURL)
         guard FileManager.default.fileExists(atPath: manifestURL.path) else { return nil }
         let data = try Data(contentsOf: manifestURL)
-        let handoff = try JSONDecoder().decode(SharedVideoHandoff.self, from: data)
+        let handoff = try JSONDecoder().decode(SharedVideoHandoffManifest.self, from: data)
         try FileManager.default.removeItem(at: manifestURL)
         let videoURL = inboxURL.appendingPathComponent(handoff.fileName)
         guard videoURL.standardizedFileURL.deletingLastPathComponent() == inboxURL.standardizedFileURL,
@@ -71,6 +76,6 @@ struct SharedVideoInbox: Sendable {
     }
 }
 
-private struct SharedVideoHandoff: Codable, Sendable {
+private struct SharedVideoHandoffManifest: Codable, Sendable {
     let fileName: String
 }

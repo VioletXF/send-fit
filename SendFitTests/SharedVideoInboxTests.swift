@@ -3,6 +3,17 @@ import XCTest
 @testable import SendFit
 
 final class SharedVideoInboxTests: XCTestCase {
+    func testHandoffUsesTheContainingAppDeepLink() {
+        XCTAssertEqual(SharedVideoHandoff.containingAppLaunchURL.absoluteString, "sendfit://share")
+    }
+
+    func testLaunchFallbackExplainsHowToResumeInMainApp() {
+        XCTAssertEqual(
+            SharedVideoHandoff.mainAppLaunchUnavailableMessage,
+            "Video is ready. Open SendFit to continue."
+        )
+    }
+
     func testMissingDevelopmentContainerHasNoPendingVideo() throws {
         let inbox = SharedVideoInbox(containerURL: nil)
 
