@@ -17,6 +17,7 @@ final class CompressionDomainTests: XCTestCase {
         let plan = try CompressionEstimator().makePlan(for: request, source: source)
 
         XCTAssertEqual(plan.videoBitrate, 500_000)
+        XCTAssertEqual(plan.outputSize, VideoDimensions(width: 960, height: 540))
     }
 
     func testPlanForSixtySecondVideoAtTenMegabytesReservesAudioAndSafetyMargin() throws {

@@ -94,7 +94,10 @@ struct SelectedVideoView: View {
                         ),
                         source: CompressionSourceInfo(duration: asset.duration, width: asset.dimensions.width, height: asset.dimensions.height, frameRate: asset.frameRate, hasAudio: asset.hasAudio)
                        ) {
-                        Label("Estimated \(plan.outputSize.displayName), \(Int(plan.outputFrameRate.rounded())) fps", systemImage: "wand.and.stars")
+                        Label(
+                            "Estimated \(plan.outputSize.displayName), \(Int(plan.outputFrameRate.rounded())) fps at \(plan.videoBitrate / 1_000) kbps",
+                            systemImage: "wand.and.stars"
+                        )
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                     }
