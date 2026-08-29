@@ -22,7 +22,7 @@ platform :ios do
   lane :create_app do
     produce(
       app_identifier: ENV.fetch("APP_IDENTIFIER", "com.sendfit.app"),
-      app_name: ENV.fetch("APP_NAME", "SendFit"),
+      app_name: ENV.fetch("APP_STORE_NAME", ENV.fetch("APP_NAME", "SendFit")),
       sku: ENV.fetch("APP_STORE_SKU", "sendfit-ios"),
       language: ENV.fetch("APP_STORE_PRIMARY_LANGUAGE", "English"),
       platform: "ios",
