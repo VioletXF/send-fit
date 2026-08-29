@@ -3,4 +3,5 @@
 build/
 DerivedData/
 fastlane/report.xml
+fastlane/*.p8
 artifacts/

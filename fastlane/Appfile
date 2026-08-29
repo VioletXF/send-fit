@@ -4,4 +4,4 @@ team_id(ENV["APPLE_DEVELOPMENT_TEAM"])
 
 # Needed only for Apple Accounts that can access more than one App Store
 # Connect provider. Leave unset for the account's default provider.
-itc_team_id(ENV["APP_STORE_CONNECT_TEAM_ID"]) if ENV["APP_STORE_CONNECT_TEAM_ID"] && !ENV["APP_STORE_CONNECT_TEAM_ID"].empty?
+itc_team_id(ENV.fetch("APP_STORE_CONNECT_TEAM_ID", "127583546"))

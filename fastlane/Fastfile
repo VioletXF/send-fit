@@ -38,7 +38,11 @@ platform :ios do
       issuer_id: ENV.fetch("APP_STORE_CONNECT_ISSUER_ID"),
       key_filepath: ENV.fetch("APP_STORE_CONNECT_KEY_PATH")
     )
-    match(type: "adhoc", api_key: api_key)
+    match(
+      type: "adhoc",
+      git_basic_authorization: ENV["GIT_BASIC_AUTHORIZATION"],
+      api_key: api_key
+    )
     build_app(
       project: "SendFit.xcodeproj",
       scheme: "SendFit",
@@ -60,7 +64,11 @@ platform :ios do
       issuer_id: ENV.fetch("APP_STORE_CONNECT_ISSUER_ID"),
       key_filepath: ENV.fetch("APP_STORE_CONNECT_KEY_PATH")
     )
-    match(type: "appstore", api_key: api_key)
+    match(
+      type: "appstore",
+      git_basic_authorization: ENV["GIT_BASIC_AUTHORIZATION"],
+      api_key: api_key
+    )
     build_app(
       project: "SendFit.xcodeproj",
       scheme: "SendFit",
