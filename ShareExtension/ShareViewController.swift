@@ -121,6 +121,10 @@ final class ShareViewController: UIViewController {
         while let currentResponder = responder {
             if let application = currentResponder as? UIApplication,
                application.responds(to: selector) {
+                if #available(iOS 18.0, *) {
+                    application.open(SharedVideoHandoff.containingAppLaunchURL, options: [:])
+                    return true
+                }
                 return application.perform(selector, with: SharedVideoHandoff.containingAppLaunchURL) != nil
             }
             responder = currentResponder.next
