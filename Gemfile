@@ -1,0 +1,11 @@
+source "https://rubygems.org"
+
+ruby ">= 3.1.2"
+
+gem "fastlane", "2.229.1"
+gem "cocoapods", "1.16.2"
+gem "activesupport", "< 7.1.0"
+gem "concurrent-ruby", "< 1.3.5"
+gem "bigdecimal", "~> 4.1"
+gem "fastlane-plugin-firebase_app_distribution"
+gem "webrick"

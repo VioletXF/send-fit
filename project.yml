@@ -1,0 +1,59 @@
+name: SendFit
+options:
+  minimumXcodeGenVersion: 2.42.0
+  deploymentTarget:
+    iOS: "18.0"
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    SUPPORTS_MACCATALYST: NO
+packages:
+  GoogleMobileAds:
+    url: https://github.com/googleads/swift-package-manager-google-mobile-ads.git
+    from: 13.9.0
+  UserMessagingPlatform:
+    url: https://github.com/googleads/swift-package-manager-google-user-messaging-platform.git
+    from: 3.1.0
+targets:
+  SendFit:
+    type: application
+    platform: iOS
+    sources:
+      - path: SendFit
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.sendfit.app
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: SendFit/Info.plist
+      configs:
+        Debug:
+          ADMOB_APP_ID: ca-app-pub-3940256099942544~1458002511
+          ADMOB_BANNER_AD_UNIT_ID: ca-app-pub-3940256099942544/2435281174
+          ADMOB_INTERSTITIAL_AD_UNIT_ID: ca-app-pub-3940256099942544/4411468910
+        Release:
+          ADMOB_APP_ID: ""
+          ADMOB_BANNER_AD_UNIT_ID: ""
+          ADMOB_INTERSTITIAL_AD_UNIT_ID: ""
+    dependencies:
+      - package: GoogleMobileAds
+        product: GoogleMobileAds
+        embed: false
+      - package: UserMessagingPlatform
+        product: GoogleUserMessagingPlatform
+        embed: false
+    scheme:
+      testTargets:
+        - SendFitTests
+  SendFitTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: SendFitTests
+    dependencies:
+      - target: SendFit
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        CODE_SIGNING_ALLOWED: NO

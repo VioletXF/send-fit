@@ -1,0 +1,569 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		025EB0E682D8426DE89D8DEB /* AdPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFE0D1634520FB0D9E13CB9 /* AdPolicyTests.swift */; };
+		043F9D2FB127B6D67C704994 /* ConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA98AFA5EFBD4AD11B5ED68 /* ConsentManager.swift */; };
+		048CF432846618BF1186E703 /* CompressionDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0864CD6071073489D956EAAA /* CompressionDomain.swift */; };
+		06EE5E1EBF6F5D8B22FAEF79 /* VideoImportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAE5630599DFC894BC26DF5 /* VideoImportService.swift */; };
+		0BE9F6455811E7F13F1D99AE /* IncomingVideoRoutingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF8FD36124DCD4ADEBAB892 /* IncomingVideoRoutingTests.swift */; };
+		1806BAFF7B981E6519F1BDD5 /* TemporaryFileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A7D38BD3E2019BDF2B37F0 /* TemporaryFileStore.swift */; };
+		2F02D993EE733BD06742E003 /* SendFitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404868E954F89210EB601F5A /* SendFitModel.swift */; };
+		2F6A4444BA783D292B7BD535 /* VideoAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E4C8BBF526B4A3FF61B5B2 /* VideoAsset.swift */; };
+		2FC6DE788DDC51A957905241 /* GoogleUserMessagingPlatform in Frameworks */ = {isa = PBXBuildFile; productRef = 02D0A01B61124A358E5859C4 /* GoogleUserMessagingPlatform */; };
+		36F965730509346E7A5FB79D /* CompressionDomainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527820164C827AA2069C7759 /* CompressionDomainTests.swift */; };
+		415A9AF1FBD1743BD48B4E83 /* AdService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA7CCEFB5A960BB015AE3FE /* AdService.swift */; };
+		528FBB9566E2E26850718A8F /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 835C2BD26EA8B86DD77CFE23 /* GoogleMobileAds */; };
+		53C8CC62B297F62E1025CD6E /* CompressionResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE58C9ACE10C38DA4404A185 /* CompressionResultView.swift */; };
+		58B66D631A8209367FB2457D /* SendFitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05C1D5389D801A1411623E4 /* SendFitApp.swift */; };
+		62BEC8F296E1605510C25A0D /* AdPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59455BFAA99D75E134C12F /* AdPolicy.swift */; };
+		660027E817540EF1EFEC4243 /* SendFitRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EBC090D481E31B16546F83 /* SendFitRootView.swift */; };
+		73E5FB0914FD92C11814ECD7 /* IncomingVideoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ABF214D17E3DE8CCBBB563 /* IncomingVideoRouter.swift */; };
+		7D125B7DBB77AAD451C1BBE0 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49D41387C94F68A4E8F98A4 /* EmptyStateView.swift */; };
+		81FF450D445BED1CF4A5D24F /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 367F5DF2A13B0921F7A72FCD /* Localizable.xcstrings */; };
+		94BF3518E39B92022E5C83CE /* VideoCompressionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC204B4BEF52B5004E06CF7A /* VideoCompressionService.swift */; };
+		9B73D63324AE164D7593B5B1 /* SelectedVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8331C55993FC4F07313C63BC /* SelectedVideoView.swift */; };
+		9B9AEC7B7CD2A6BD2139109D /* ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61176D06CADBB8CEAE2430A /* ExportService.swift */; };
+		A8DEC9A26DC45CAF33591FF8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E5F8C324F56877C96C0236 /* SettingsView.swift */; };
+		C24FB89BE88DC80875F39DD8 /* VideoMetadataReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECAC9D599CEEBA681A910DB /* VideoMetadataReader.swift */; };
+		D2944831BDE692981375230B /* CompressionProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F17628E4BE77E882090F18 /* CompressionProgressView.swift */; };
+		EDB6EF171D7AA464B37D3176 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67F8E9C34B155632EB1DBDE7 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D9AAD332CE7B8EF9091CE0C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7C01B9BAE369C62CCDF61445 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4741FBE3F8186A80440C9559;
+			remoteInfo = SendFit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0864CD6071073489D956EAAA /* CompressionDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressionDomain.swift; sourceTree = "<group>"; };
+		1CA98AFA5EFBD4AD11B5ED68 /* ConsentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentManager.swift; sourceTree = "<group>"; };
+		20E5F8C324F56877C96C0236 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		23EBC090D481E31B16546F83 /* SendFitRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFitRootView.swift; sourceTree = "<group>"; };
+		367F5DF2A13B0921F7A72FCD /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		3BAE5630599DFC894BC26DF5 /* VideoImportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoImportService.swift; sourceTree = "<group>"; };
+		3F59455BFAA99D75E134C12F /* AdPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdPolicy.swift; sourceTree = "<group>"; };
+		404868E954F89210EB601F5A /* SendFitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFitModel.swift; sourceTree = "<group>"; };
+		4CA7CCEFB5A960BB015AE3FE /* AdService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdService.swift; sourceTree = "<group>"; };
+		51E4C8BBF526B4A3FF61B5B2 /* VideoAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoAsset.swift; sourceTree = "<group>"; };
+		527820164C827AA2069C7759 /* CompressionDomainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressionDomainTests.swift; sourceTree = "<group>"; };
+		56F17628E4BE77E882090F18 /* CompressionProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressionProgressView.swift; sourceTree = "<group>"; };
+		5ECAC9D599CEEBA681A910DB /* VideoMetadataReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMetadataReader.swift; sourceTree = "<group>"; };
+		67F8E9C34B155632EB1DBDE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7F2C0828439C24D76A6F0BEA /* SendFit.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SendFit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8331C55993FC4F07313C63BC /* SelectedVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedVideoView.swift; sourceTree = "<group>"; };
+		A61176D06CADBB8CEAE2430A /* ExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportService.swift; sourceTree = "<group>"; };
+		B49D41387C94F68A4E8F98A4 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		CE58C9ACE10C38DA4404A185 /* CompressionResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressionResultView.swift; sourceTree = "<group>"; };
+		D14C949C5E7A5AFB2898B443 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D5984C004193FE63D7B13BAA /* SendFitTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SendFitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC204B4BEF52B5004E06CF7A /* VideoCompressionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCompressionService.swift; sourceTree = "<group>"; };
+		DDF8FD36124DCD4ADEBAB892 /* IncomingVideoRoutingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingVideoRoutingTests.swift; sourceTree = "<group>"; };
+		DFFE0D1634520FB0D9E13CB9 /* AdPolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdPolicyTests.swift; sourceTree = "<group>"; };
+		F05C1D5389D801A1411623E4 /* SendFitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFitApp.swift; sourceTree = "<group>"; };
+		F6ABF214D17E3DE8CCBBB563 /* IncomingVideoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingVideoRouter.swift; sourceTree = "<group>"; };
+		F7A7D38BD3E2019BDF2B37F0 /* TemporaryFileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryFileStore.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		783CCAF79ED990F1A125680C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				528FBB9566E2E26850718A8F /* GoogleMobileAds in Frameworks */,
+				2FC6DE788DDC51A957905241 /* GoogleUserMessagingPlatform in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		03283AE7483891275C9B49CF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4CA7CCEFB5A960BB015AE3FE /* AdService.swift */,
+				1CA98AFA5EFBD4AD11B5ED68 /* ConsentManager.swift */,
+				A61176D06CADBB8CEAE2430A /* ExportService.swift */,
+				F6ABF214D17E3DE8CCBBB563 /* IncomingVideoRouter.swift */,
+				F7A7D38BD3E2019BDF2B37F0 /* TemporaryFileStore.swift */,
+				DC204B4BEF52B5004E06CF7A /* VideoCompressionService.swift */,
+				3BAE5630599DFC894BC26DF5 /* VideoImportService.swift */,
+				5ECAC9D599CEEBA681A910DB /* VideoMetadataReader.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		1B6CED300C1E2FEE40C20955 /* SendFit */ = {
+			isa = PBXGroup;
+			children = (
+				67F8E9C34B155632EB1DBDE7 /* Assets.xcassets */,
+				D14C949C5E7A5AFB2898B443 /* Info.plist */,
+				367F5DF2A13B0921F7A72FCD /* Localizable.xcstrings */,
+				F05C1D5389D801A1411623E4 /* SendFitApp.swift */,
+				91620E38F899E6EB177E4F06 /* Domain */,
+				B89D353A59754EC7F985F82B /* Features */,
+				03283AE7483891275C9B49CF /* Services */,
+			);
+			path = SendFit;
+			sourceTree = "<group>";
+		};
+		3BD5C1AA208CA3DE788A61E7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7F2C0828439C24D76A6F0BEA /* SendFit.app */,
+				D5984C004193FE63D7B13BAA /* SendFitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3C5A64F7C909B0633A5F07BA = {
+			isa = PBXGroup;
+			children = (
+				1B6CED300C1E2FEE40C20955 /* SendFit */,
+				7BBB81149D3C6152301C57F5 /* SendFitTests */,
+				3BD5C1AA208CA3DE788A61E7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7BBB81149D3C6152301C57F5 /* SendFitTests */ = {
+			isa = PBXGroup;
+			children = (
+				DFFE0D1634520FB0D9E13CB9 /* AdPolicyTests.swift */,
+				527820164C827AA2069C7759 /* CompressionDomainTests.swift */,
+				DDF8FD36124DCD4ADEBAB892 /* IncomingVideoRoutingTests.swift */,
+			);
+			path = SendFitTests;
+			sourceTree = "<group>";
+		};
+		91620E38F899E6EB177E4F06 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				3F59455BFAA99D75E134C12F /* AdPolicy.swift */,
+				0864CD6071073489D956EAAA /* CompressionDomain.swift */,
+				51E4C8BBF526B4A3FF61B5B2 /* VideoAsset.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		B89D353A59754EC7F985F82B /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				56F17628E4BE77E882090F18 /* CompressionProgressView.swift */,
+				CE58C9ACE10C38DA4404A185 /* CompressionResultView.swift */,
+				B49D41387C94F68A4E8F98A4 /* EmptyStateView.swift */,
+				8331C55993FC4F07313C63BC /* SelectedVideoView.swift */,
+				404868E954F89210EB601F5A /* SendFitModel.swift */,
+				23EBC090D481E31B16546F83 /* SendFitRootView.swift */,
+				20E5F8C324F56877C96C0236 /* SettingsView.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4741FBE3F8186A80440C9559 /* SendFit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 87ADFF49039E844CC61B24EB /* Build configuration list for PBXNativeTarget "SendFit" */;
+			buildPhases = (
+				E4837834D9AB1AE64BF94CBC /* Sources */,
+				06330E0821B2442D3AC52254 /* Resources */,
+				783CCAF79ED990F1A125680C /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SendFit;
+			packageProductDependencies = (
+				835C2BD26EA8B86DD77CFE23 /* GoogleMobileAds */,
+				02D0A01B61124A358E5859C4 /* GoogleUserMessagingPlatform */,
+			);
+			productName = SendFit;
+			productReference = 7F2C0828439C24D76A6F0BEA /* SendFit.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7162E5AF18DB2EF3EF3E4531 /* SendFitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0FB93EC14BD02A263C6FD20A /* Build configuration list for PBXNativeTarget "SendFitTests" */;
+			buildPhases = (
+				69F281B361AE03E5B84AC8F0 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				61B11D639B6B1F21F0BA1EE8 /* PBXTargetDependency */,
+			);
+			name = SendFitTests;
+			packageProductDependencies = (
+			);
+			productName = SendFitTests;
+			productReference = D5984C004193FE63D7B13BAA /* SendFitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7C01B9BAE369C62CCDF61445 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+			};
+			buildConfigurationList = 42699B076D5F274C42F31B82 /* Build configuration list for PBXProject "SendFit" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 3C5A64F7C909B0633A5F07BA;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				8BA10DE40A19E1B608D00DBE /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				05CDD7CD762A75FF3AD97AB1 /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */,
+			);
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4741FBE3F8186A80440C9559 /* SendFit */,
+				7162E5AF18DB2EF3EF3E4531 /* SendFitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		06330E0821B2442D3AC52254 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDB6EF171D7AA464B37D3176 /* Assets.xcassets in Resources */,
+				81FF450D445BED1CF4A5D24F /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		69F281B361AE03E5B84AC8F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				025EB0E682D8426DE89D8DEB /* AdPolicyTests.swift in Sources */,
+				36F965730509346E7A5FB79D /* CompressionDomainTests.swift in Sources */,
+				0BE9F6455811E7F13F1D99AE /* IncomingVideoRoutingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E4837834D9AB1AE64BF94CBC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62BEC8F296E1605510C25A0D /* AdPolicy.swift in Sources */,
+				415A9AF1FBD1743BD48B4E83 /* AdService.swift in Sources */,
+				048CF432846618BF1186E703 /* CompressionDomain.swift in Sources */,
+				D2944831BDE692981375230B /* CompressionProgressView.swift in Sources */,
+				53C8CC62B297F62E1025CD6E /* CompressionResultView.swift in Sources */,
+				043F9D2FB127B6D67C704994 /* ConsentManager.swift in Sources */,
+				7D125B7DBB77AAD451C1BBE0 /* EmptyStateView.swift in Sources */,
+				9B9AEC7B7CD2A6BD2139109D /* ExportService.swift in Sources */,
+				73E5FB0914FD92C11814ECD7 /* IncomingVideoRouter.swift in Sources */,
+				9B73D63324AE164D7593B5B1 /* SelectedVideoView.swift in Sources */,
+				58B66D631A8209367FB2457D /* SendFitApp.swift in Sources */,
+				2F02D993EE733BD06742E003 /* SendFitModel.swift in Sources */,
+				660027E817540EF1EFEC4243 /* SendFitRootView.swift in Sources */,
+				A8DEC9A26DC45CAF33591FF8 /* SettingsView.swift in Sources */,
+				1806BAFF7B981E6519F1BDD5 /* TemporaryFileStore.swift in Sources */,
+				2F6A4444BA783D292B7BD535 /* VideoAsset.swift in Sources */,
+				94BF3518E39B92022E5C83CE /* VideoCompressionService.swift in Sources */,
+				06EE5E1EBF6F5D8B22FAEF79 /* VideoImportService.swift in Sources */,
+				C24FB89BE88DC80875F39DD8 /* VideoMetadataReader.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		61B11D639B6B1F21F0BA1EE8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4741FBE3F8186A80440C9559 /* SendFit */;
+			targetProxy = D9AAD332CE7B8EF9091CE0C7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0883BB2190F940609C98B7DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGNING_ALLOWED = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SendFit.app/SendFit";
+			};
+			name = Debug;
+		};
+		48E48BA2B66D3346169E15C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		5525435AD2A0785835E1D430 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ADMOB_APP_ID = "";
+				ADMOB_BANNER_AD_UNIT_ID = "";
+				ADMOB_INTERSTITIAL_AD_UNIT_ID = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SendFit/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sendfit.app;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		953E3D25CE0F50543CD9F9B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ADMOB_APP_ID = "ca-app-pub-3940256099942544~1458002511";
+				ADMOB_BANNER_AD_UNIT_ID = "ca-app-pub-3940256099942544/2435281174";
+				ADMOB_INTERSTITIAL_AD_UNIT_ID = "ca-app-pub-3940256099942544/4411468910";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SendFit/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sendfit.app;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A7211B36794B2704D3F3AD6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGNING_ALLOWED = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SendFit.app/SendFit";
+			};
+			name = Release;
+		};
+		D1638FE47E8AFBF1B5DF41F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0FB93EC14BD02A263C6FD20A /* Build configuration list for PBXNativeTarget "SendFitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0883BB2190F940609C98B7DE /* Debug */,
+				A7211B36794B2704D3F3AD6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		42699B076D5F274C42F31B82 /* Build configuration list for PBXProject "SendFit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1638FE47E8AFBF1B5DF41F4 /* Debug */,
+				48E48BA2B66D3346169E15C6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		87ADFF49039E844CC61B24EB /* Build configuration list for PBXNativeTarget "SendFit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				953E3D25CE0F50543CD9F9B0 /* Debug */,
+				5525435AD2A0785835E1D430 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		05CDD7CD762A75FF3AD97AB1 /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-user-messaging-platform.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.0;
+			};
+		};
+		8BA10DE40A19E1B608D00DBE /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		02D0A01B61124A358E5859C4 /* GoogleUserMessagingPlatform */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05CDD7CD762A75FF3AD97AB1 /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */;
+			productName = GoogleUserMessagingPlatform;
+		};
+		835C2BD26EA8B86DD77CFE23 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BA10DE40A19E1B608D00DBE /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 7C01B9BAE369C62CCDF61445 /* Project object */;
+}

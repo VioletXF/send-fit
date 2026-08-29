@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    <key>CFBundleDisplayName</key>
+    <string>SendFit</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>GADApplicationIdentifier</key>
+    <string>$(ADMOB_APP_ID)</string>
+    <key>ADMOB_BANNER_AD_UNIT_ID</key>
+    <string>$(ADMOB_BANNER_AD_UNIT_ID)</string>
+    <key>ADMOB_INTERSTITIAL_AD_UNIT_ID</key>
+    <string>$(ADMOB_INTERSTITIAL_AD_UNIT_ID)</string>
+    <key>LSApplicationCategoryType</key>
+    <string>public.app-category.photo-video</string>
+    <key>LSSupportsOpeningDocumentsInPlace</key>
+    <true/>
+    <key>CFBundleDocumentTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeName</key>
+            <string>Video</string>
+            <key>CFBundleTypeRole</key>
+            <string>Viewer</string>
+            <key>LSItemContentTypes</key>
+            <array>
+                <string>public.movie</string>
+                <string>public.mpeg-4</string>
+                <string>com.apple.quicktime-movie</string>
+            </array>
+        </dict>
+    </array>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>SendFit needs permission to save compressed videos to your Photos library.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>SendFit uses Photos only when you choose a video to compress.</string>
+    <key>UILaunchScreen</key>
+    <dict/>
+</dict>
+</plist>
