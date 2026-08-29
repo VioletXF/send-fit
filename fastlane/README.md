@@ -39,10 +39,10 @@ Create the SendFit identifier and App Store Connect app record
 
 Build an ad-hoc IPA and distribute it with Firebase App Distribution
 
-### ios testflight
+### ios testflight_release
 
 ```sh
-[bundle exec] fastlane ios testflight
+[bundle exec] fastlane ios testflight_release
 ```
 
 Archive and upload a signed production build to TestFlight

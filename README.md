@@ -48,7 +48,7 @@ bundle exec ruby scripts/provision_admob.rb provision
 bundle install
 bundle exec fastlane ios test
 bundle exec fastlane ios firebase
-bundle exec fastlane ios testflight
+bundle exec fastlane ios testflight_release
 ```
 
 The Firebase lane distributes an ad-hoc build through Firebase App Distribution; SendFit does not include Firebase Analytics, Crashlytics, or a Firebase runtime SDK. The TestFlight lane uses Fastlane Match plus App Store Connect API-key credentials.
