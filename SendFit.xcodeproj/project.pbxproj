@@ -17,6 +17,7 @@
 		2F6A4444BA783D292B7BD535 /* VideoAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E4C8BBF526B4A3FF61B5B2 /* VideoAsset.swift */; };
 		2FC6DE788DDC51A957905241 /* GoogleUserMessagingPlatform in Frameworks */ = {isa = PBXBuildFile; productRef = 02D0A01B61124A358E5859C4 /* GoogleUserMessagingPlatform */; };
 		36F965730509346E7A5FB79D /* CompressionDomainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527820164C827AA2069C7759 /* CompressionDomainTests.swift */; };
+		3B69080520D57B0BB9420AF7 /* PhotosVideoImportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4D0744834E7D6183CA9E04 /* PhotosVideoImportTests.swift */; };
 		415A9AF1FBD1743BD48B4E83 /* AdService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA7CCEFB5A960BB015AE3FE /* AdService.swift */; };
 		528FBB9566E2E26850718A8F /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 835C2BD26EA8B86DD77CFE23 /* GoogleMobileAds */; };
 		53C8CC62B297F62E1025CD6E /* CompressionResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE58C9ACE10C38DA4404A185 /* CompressionResultView.swift */; };
@@ -75,6 +76,7 @@
 		F05C1D5389D801A1411623E4 /* SendFitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFitApp.swift; sourceTree = "<group>"; };
 		F6ABF214D17E3DE8CCBBB563 /* IncomingVideoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingVideoRouter.swift; sourceTree = "<group>"; };
 		F7A7D38BD3E2019BDF2B37F0 /* TemporaryFileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryFileStore.swift; sourceTree = "<group>"; };
+		FC4D0744834E7D6183CA9E04 /* PhotosVideoImportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosVideoImportTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 				DFFE0D1634520FB0D9E13CB9 /* AdPolicyTests.swift */,
 				527820164C827AA2069C7759 /* CompressionDomainTests.swift */,
 				DDF8FD36124DCD4ADEBAB892 /* IncomingVideoRoutingTests.swift */,
+				FC4D0744834E7D6183CA9E04 /* PhotosVideoImportTests.swift */,
 				79C134F9CA347529185854E7 /* SaveResultTests.swift */,
 			);
 			path = SendFitTests;
@@ -272,6 +275,7 @@
 				025EB0E682D8426DE89D8DEB /* AdPolicyTests.swift in Sources */,
 				36F965730509346E7A5FB79D /* CompressionDomainTests.swift in Sources */,
 				0BE9F6455811E7F13F1D99AE /* IncomingVideoRoutingTests.swift in Sources */,
+				3B69080520D57B0BB9420AF7 /* PhotosVideoImportTests.swift in Sources */,
 				D0F7BDA009FCC19965C4F290 /* SaveResultTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -26,4 +26,9 @@ struct VideoImportService: Sendable {
         }
         return try await metadataReader.read(url: workingURL, importSource: source, ownership: ownership)
     }
+
+    func importManagedFile(at url: URL, source: VideoImportSource) async throws -> VideoAsset {
+        guard IncomingVideoRouter.isSupported(url) else { throw VideoImportError.unsupportedFile }
+        return try await metadataReader.read(url: url, importSource: source, ownership: .sendFitTemporary)
+    }
 }

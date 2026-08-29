@@ -55,6 +55,8 @@ The Firebase lane distributes an ad-hoc build through Firebase App Distribution;
 
 Before an archive, run `zsh scripts/verify_release_configuration.sh` (or append `firebase`) to list missing values without exposing any secret. If `bundle` unexpectedly runs `/System/Library/.../ruby/2.6`, initialize asdf in the current shell and run `asdf reshim ruby 3.3.7`; `command -v bundle` should then resolve to the asdf shim rather than `/usr/local/bin/bundle`.
 
+Before final submission, run `bundle exec ruby scripts/verify_app_store_submission_readiness.rb`. It uses the App Store Connect API key from `.env` to report missing App Store fields without revealing their values.
+
 The public App Store policy, support instructions, and reviewer notes are in [docs/](docs/). The App Store record should use the GitHub-hosted privacy-policy file after this repository is published.
 
 ## Future monetization

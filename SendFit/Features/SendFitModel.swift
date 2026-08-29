@@ -117,7 +117,7 @@ final class SendFitModel {
             guard let transferred = try await item.loadTransferable(type: ImportedMovie.self) else {
                 throw VideoImportError.unsupportedFile
             }
-            await selectFile(url: transferred.url, source: .photos)
+            phase = .selected(try await importService.importManagedFile(at: transferred.url, source: .photos))
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -217,9 +217,13 @@ final class SendFitModel {
 struct ImportedMovie: Transferable {
     let url: URL
 
+    init(url: URL) throws {
+        self.url = try TemporaryFileStore.copyReceivedPickerFile(from: url)
+    }
+
     static var transferRepresentation: some TransferRepresentation {
         FileRepresentation(importedContentType: .movie) { received in
-            ImportedMovie(url: received.file)
+            try ImportedMovie(url: received.file)
         }
     }
 }

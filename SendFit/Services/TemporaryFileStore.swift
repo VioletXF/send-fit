@@ -7,6 +7,17 @@ actor TemporaryFileStore {
         rootURL = fileManager.temporaryDirectory.appendingPathComponent("SendFit", isDirectory: true)
     }
 
+    nonisolated static func copyReceivedPickerFile(from sourceURL: URL) throws -> URL {
+        let fileManager = FileManager.default
+        let rootURL = fileManager.temporaryDirectory.appendingPathComponent("SendFit", isDirectory: true)
+        try fileManager.createDirectory(at: rootURL, withIntermediateDirectories: true)
+        let transferDirectory = rootURL.appendingPathComponent(UUID().uuidString, isDirectory: true)
+        try fileManager.createDirectory(at: transferDirectory, withIntermediateDirectories: true)
+        let destination = transferDirectory.appendingPathComponent(sourceURL.lastPathComponent)
+        try fileManager.copyItem(at: sourceURL, to: destination)
+        return destination
+    }
+
     func prepare() throws {
         try FileManager.default.createDirectory(at: rootURL, withIntermediateDirectories: true)
     }
