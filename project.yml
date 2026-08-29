@@ -24,6 +24,9 @@ targets:
       - path: Shared
     entitlements:
       path: SendFit/SendFit.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.sendfit.app
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.sendfit.app
@@ -71,6 +74,9 @@ targets:
       - path: Shared
     entitlements:
       path: ShareExtension/ShareExtension.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.sendfit.app
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.sendfit.app.share

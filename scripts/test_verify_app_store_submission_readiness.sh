@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+for entitlements_path in SendFit/SendFit.entitlements ShareExtension/ShareExtension.entitlements; do
+  application_group="$(/usr/libexec/PlistBuddy -c 'Print :com.apple.security.application-groups:0' "$entitlements_path" 2>/dev/null || true)"
+  if [[ "$application_group" != "group.com.sendfit.app" ]]; then
+    echo "Missing SendFit App Group entitlement in $entitlements_path." >&2
+    exit 1
+  fi
+done
+
 output=""
 status=0
 output="$(asdf exec bundle exec ruby scripts/verify_app_store_submission_readiness.rb 2>&1)" || status=$?
