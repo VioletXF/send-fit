@@ -19,6 +19,7 @@ final class SendFitModel {
     var phase: SendFitPhase = .empty
     var targetSizeMB: Double = 25
     var customTargetText = ""
+    var compressionPriority: CompressionPriority = .frameRate
     var progress = 0.0
     var stage = "Preparing…"
     var errorMessage: String?
@@ -33,6 +34,7 @@ final class SendFitModel {
     private let incomingRouter: IncomingVideoRouter
     private let compressionService: VideoCompressionService
     private let exportService: any PhotoLibrarySaving
+    private let sharedVideoInbox: SharedVideoInbox
     private let consentManager: any ConsentManaging
     private let adService: any AdServing
     private let entitlement: any EntitlementProviding
@@ -45,6 +47,7 @@ final class SendFitModel {
         incomingRouter: IncomingVideoRouter = IncomingVideoRouter(),
         compressionService: VideoCompressionService = VideoCompressionService(),
         exportService: any PhotoLibrarySaving = ExportService(),
+        sharedVideoInbox: SharedVideoInbox = SharedVideoInbox(),
         consentManager: any ConsentManaging = ConsentManager(),
         adService: any AdServing = AdService(),
         entitlement: any EntitlementProviding = FreeEntitlementProvider(),
@@ -55,6 +58,7 @@ final class SendFitModel {
         self.incomingRouter = incomingRouter
         self.compressionService = compressionService
         self.exportService = exportService
+        self.sharedVideoInbox = sharedVideoInbox
         self.consentManager = consentManager
         self.adService = adService
         self.entitlement = entitlement
@@ -111,6 +115,20 @@ final class SendFitModel {
         }
     }
 
+    func openSharedVideo() async {
+        guard !isCompressing else {
+            errorMessage = VideoImportError.activeCompression.localizedDescription
+            return
+        }
+        do {
+            guard let sharedURL = try sharedVideoInbox.consumePendingVideoURL() else { return }
+            defer { sharedVideoInbox.removeSharedVideo(at: sharedURL) }
+            phase = .selected(try await incomingRouter.route([sharedURL], compressionIsActive: false))
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+
     func handlePhotosPicker(_ item: PhotosPickerItem?) async {
         guard let item else { return }
         do {
@@ -137,7 +155,7 @@ final class SendFitModel {
             do {
                 let result = try await self.compressionService.compress(
                     source: source,
-                    request: CompressionRequest(targetSizeBytes: targetSizeBytes)
+                    request: CompressionRequest(targetSizeBytes: targetSizeBytes, priority: compressionPriority)
                 ) { [weak self] progress, stage in
                     Task { @MainActor in
                         self?.progress = progress

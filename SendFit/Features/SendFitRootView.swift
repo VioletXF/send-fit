@@ -28,7 +28,10 @@ struct SendFitRootView: View {
                 }
             }
         }
-        .task { await model.initialize() }
+        .task {
+            await model.initialize()
+            await model.openSharedVideo()
+        }
         .onChange(of: photosItem) { _, item in
             guard let item else { return }
             // PhotosPicker retains its bound item between presentations. Clear it
@@ -43,7 +46,13 @@ struct SendFitRootView: View {
             }
         }
         .onOpenURL { url in
-            Task { await model.openExternally(url: url) }
+            Task {
+                if url.scheme == "sendfit", url.host == "share" {
+                    await model.openSharedVideo()
+                } else {
+                    await model.openExternally(url: url)
+                }
+            }
         }
         .alert("SendFit", isPresented: Binding(get: { model.errorMessage != nil }, set: { if !$0 { model.errorMessage = nil } })) {
             Button("OK", role: .cancel) { model.errorMessage = nil }

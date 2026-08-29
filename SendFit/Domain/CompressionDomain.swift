@@ -17,6 +17,42 @@ struct CompressionSourceInfo: Equatable, Sendable {
 
 struct CompressionRequest: Equatable, Sendable {
     let targetSizeBytes: Int64
+    let priority: CompressionPriority
+
+    init(targetSizeBytes: Int64, priority: CompressionPriority = .frameRate) {
+        self.targetSizeBytes = targetSizeBytes
+        self.priority = priority
+    }
+}
+
+enum CompressionTargetPreset: Double, CaseIterable, Equatable, Sendable {
+    case fiveMegabytes = 5
+    case tenMegabytes = 10
+    case twentyMegabytes = 20
+    case twentyFiveMegabytes = 25
+    case fiftyMegabytes = 50
+    case oneHundredMegabytes = 100
+    case custom = 0
+
+    var displayName: String {
+        self == .custom ? "Custom" : "\(Int(rawValue)) MB"
+    }
+
+    var targetSizeBytes: Int64 {
+        Int64(rawValue * 1_000_000)
+    }
+}
+
+enum CompressionPriority: String, CaseIterable, Equatable, Sendable {
+    case frameRate
+    case resolution
+
+    var displayName: String {
+        switch self {
+        case .frameRate: "Frame Rate"
+        case .resolution: "Resolution"
+        }
+    }
 }
 
 struct CompressionPlan: Equatable, Sendable {
@@ -52,11 +88,23 @@ struct CompressionEstimator: Sendable {
         let videoBitrate = totalBitrate - audioBitrate - safetyMargin
         guard videoBitrate >= Self.minimumVideoBitrate else { throw CompressionPlanningError.targetTooSmall }
 
+        let outputFrameRate: Double
+        let outputSize: VideoDimensions
+        switch request.priority {
+        case .frameRate:
+            outputFrameRate = selectedFrameRate(source.frameRate, preservingFrameRate: true)
+            let dimensionBitrate = Int((Double(videoBitrate) * 30 / max(outputFrameRate, 1)).rounded(.down))
+            outputSize = selectedDimensions(source: source, videoBitrate: dimensionBitrate)
+        case .resolution:
+            outputFrameRate = selectedFrameRate(source.frameRate, preservingFrameRate: false)
+            outputSize = selectedDimensions(source: source, videoBitrate: videoBitrate)
+        }
+
         return CompressionPlan(
             videoBitrate: videoBitrate,
             audioBitrate: audioBitrate,
-            outputSize: selectedDimensions(source: source, videoBitrate: videoBitrate),
-            outputFrameRate: selectedFrameRate(source.frameRate),
+            outputSize: outputSize,
+            outputFrameRate: outputFrameRate,
             safetyMarginBitrate: safetyMargin
         )
     }
@@ -95,9 +143,9 @@ struct CompressionEstimator: Sendable {
         return VideoDimensions(width: max(2, width), height: max(2, height))
     }
 
-    private func selectedFrameRate(_ sourceFrameRate: Double) -> Double {
+    private func selectedFrameRate(_ sourceFrameRate: Double, preservingFrameRate: Bool) -> Double {
         if sourceFrameRate > 60 { return 60 }
-        if sourceFrameRate > 30 { return 30 }
+        if !preservingFrameRate, sourceFrameRate > 30 { return 30 }
         return sourceFrameRate
     }
 

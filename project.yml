@@ -21,6 +21,9 @@ targets:
     platform: iOS
     sources:
       - path: SendFit
+      - path: Shared
+    entitlements:
+      path: SendFit/SendFit.entitlements
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.sendfit.app
@@ -44,6 +47,8 @@ targets:
       - package: UserMessagingPlatform
         product: GoogleUserMessagingPlatform
         embed: false
+      - target: SendFitShare
+        embed: true
     scheme:
       testTargets:
         - SendFitTests
@@ -58,3 +63,19 @@ targets:
       base:
         GENERATE_INFOPLIST_FILE: YES
         CODE_SIGNING_ALLOWED: NO
+  SendFitShare:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: ShareExtension
+      - path: Shared
+    entitlements:
+      path: ShareExtension/ShareExtension.entitlements
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.sendfit.app.share
+        PRODUCT_NAME: SendFitShare
+        DEVELOPMENT_TEAM: 4U66W7TDBL
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: ShareExtension/Info.plist
+        SKIP_INSTALL: YES

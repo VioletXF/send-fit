@@ -7,6 +7,13 @@ def unlock_signing_keychain
   unlock_keychain(password: password) unless password.empty?
 end
 
+def signing_app_identifiers
+  ENV.fetch("MATCH_APP_IDENTIFIERS", "com.sendfit.app,com.sendfit.app.share")
+    .split(",")
+    .map(&:strip)
+    .reject(&:empty?)
+end
+
 platform :ios do
   before_all do
     ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] ||= "120"
@@ -46,6 +53,7 @@ platform :ios do
     )
     match(
       type: "adhoc",
+      app_identifier: signing_app_identifiers,
       git_basic_authorization: ENV["GIT_BASIC_AUTHORIZATION"],
       api_key: api_key
     )
@@ -73,6 +81,7 @@ platform :ios do
     )
     match(
       type: "appstore",
+      app_identifier: signing_app_identifiers,
       git_basic_authorization: ENV["GIT_BASIC_AUTHORIZATION"],
       api_key: api_key
     )

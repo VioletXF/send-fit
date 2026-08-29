@@ -1,5 +1,10 @@
 git_url(ENV.fetch("MATCH_GIT_URL", "https://github.com/SNURhythm/fastlane-match.git"))
 storage_mode("git")
 type("appstore")
-app_identifier(ENV.fetch("APP_IDENTIFIER", "com.sendfit.app"))
+app_identifier(
+  ENV.fetch("MATCH_APP_IDENTIFIERS", "com.sendfit.app,com.sendfit.app.share")
+    .split(",")
+    .map(&:strip)
+    .reject(&:empty?)
+)
 username(ENV["FASTLANE_USER"])

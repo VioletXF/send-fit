@@ -51,7 +51,7 @@ if missing.empty?
         missing << "marketing URL" unless present?(localization.marketing_url)
 
         screenshot_sets = localization.get_app_screenshot_sets
-        screenshot_count = screenshot_sets.sum { |set| set.get_app_screenshots.count }
+        screenshot_count = screenshot_sets.sum { |set| set.app_screenshots.count }
         missing << "App Store screenshots" if screenshot_count.zero?
       end
 

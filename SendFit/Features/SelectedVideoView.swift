@@ -21,14 +21,25 @@ struct SelectedVideoView: View {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Target Size").font(.headline)
                     Picker("Target Size", selection: $model.targetSizeMB) {
-                        Text("5 MB").tag(5.0)
-                        Text("10 MB").tag(10.0)
-                        Text("25 MB").tag(25.0)
-                        Text("50 MB").tag(50.0)
-                        Text("100 MB").tag(100.0)
-                        Text("Custom").tag(0.0)
+                        ForEach(CompressionTargetPreset.allCases, id: \.self) { preset in
+                            Text(preset.displayName).tag(preset.rawValue)
+                        }
                     }
                     .pickerStyle(.segmented)
+
+                    Text("Prioritize").font(.headline)
+                    Picker("Prioritize", selection: $model.compressionPriority) {
+                        ForEach(CompressionPriority.allCases, id: \.self) { priority in
+                            Text(priority.displayName).tag(priority)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+
+                    Text(model.compressionPriority == .frameRate
+                         ? "Keeps the original frame rate when possible by reducing resolution first."
+                         : "Keeps more resolution when possible by reducing frame rate first.")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
 
                     if model.targetSizeMB == 0 {
                         TextField("Custom size in MB", text: $model.customTargetText)
@@ -38,7 +49,7 @@ struct SelectedVideoView: View {
                     }
                     if let target = model.targetSizeBytes,
                        let plan = try? CompressionEstimator().makePlan(
-                        for: CompressionRequest(targetSizeBytes: target),
+                        for: CompressionRequest(targetSizeBytes: target, priority: model.compressionPriority),
                         source: CompressionSourceInfo(duration: asset.duration, width: asset.dimensions.width, height: asset.dimensions.height, frameRate: asset.frameRate, hasAudio: asset.hasAudio)
                        ) {
                         Label("Estimated \(plan.outputSize.displayName), \(Int(plan.outputFrameRate.rounded())) fps", systemImage: "wand.and.stars")

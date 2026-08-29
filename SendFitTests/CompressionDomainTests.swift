@@ -2,6 +2,10 @@ import XCTest
 @testable import SendFit
 
 final class CompressionDomainTests: XCTestCase {
+    func testTwentyMegabytePresetUsesDecimalTwentyMegabytes() {
+        XCTAssertEqual(CompressionTargetPreset.twentyMegabytes.targetSizeBytes, 20_000_000)
+    }
+
     func testPlanForSixtySecondVideoAtTenMegabytesReservesAudioAndSafetyMargin() throws {
         let request = CompressionRequest(targetSizeBytes: 10_000_000)
         let source = CompressionSourceInfo(duration: 60, width: 1920, height: 1080, frameRate: 30, hasAudio: true)
@@ -14,14 +18,25 @@ final class CompressionDomainTests: XCTestCase {
         XCTAssertEqual(plan.outputFrameRate, 30)
     }
 
-    func testPlanForThirtySecondFiveMegabyteVideoSelectsLowerAudioBitrate() throws {
+    func testPlanForThirtySecondFiveMegabyteHighFrameRateVideoPrioritizesFrameRateByDefault() throws {
         let request = CompressionRequest(targetSizeBytes: 5_000_000)
         let source = CompressionSourceInfo(duration: 30, width: 1920, height: 1080, frameRate: 60, hasAudio: true)
 
         let plan = try CompressionEstimator().makePlan(for: request, source: source)
 
         XCTAssertEqual(plan.audioBitrate, 96_000)
+        XCTAssertEqual(plan.outputFrameRate, 60)
+        XCTAssertEqual(plan.outputSize, VideoDimensions(width: 960, height: 540))
+    }
+
+    func testResolutionPriorityKeepsMorePixelsByReducingFrameRate() throws {
+        let request = CompressionRequest(targetSizeBytes: 5_000_000, priority: .resolution)
+        let source = CompressionSourceInfo(duration: 30, width: 1920, height: 1080, frameRate: 60, hasAudio: true)
+
+        let plan = try CompressionEstimator().makePlan(for: request, source: source)
+
         XCTAssertEqual(plan.outputFrameRate, 30)
+        XCTAssertEqual(plan.outputSize, VideoDimensions(width: 1280, height: 720))
     }
 
     func testPlanForLongVideoWithTinyTargetIsRejected() {
@@ -34,7 +49,7 @@ final class CompressionDomainTests: XCTestCase {
     }
 
     func testPlanForTenMinuteVideoAtTwentyFiveMegabytesStaysAboveMinimumQuality() throws {
-        let request = CompressionRequest(targetSizeBytes: 25_000_000)
+        let request = CompressionRequest(targetSizeBytes: 25_000_000, priority: .resolution)
         let source = CompressionSourceInfo(duration: 600, width: 3840, height: 2160, frameRate: 60, hasAudio: true)
 
         let plan = try CompressionEstimator().makePlan(for: request, source: source)

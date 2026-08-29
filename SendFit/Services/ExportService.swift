@@ -1,14 +1,14 @@
 import Foundation
 import Photos
 
-@MainActor
-protocol PhotoLibrarySaving {
+protocol PhotoLibrarySaving: Sendable {
     func saveToPhotos(_ result: CompressionResult) async throws
 }
 
 enum PhotoExportError: LocalizedError {
     case outputFileMissing
     case photoLibraryAccessDenied
+    case saveFailed
 
     var errorDescription: String? {
         switch self {
@@ -16,21 +16,26 @@ enum PhotoExportError: LocalizedError {
             "The compressed video is no longer available. Compress it again before saving."
         case .photoLibraryAccessDenied:
             "Allow Add Photos Only access in Settings to save the compressed video."
+        case .saveFailed:
+            "SendFit couldn't save this video to Photos. Try again."
         }
     }
 }
 
-@MainActor
-final class ExportService: PhotoLibrarySaving {
+struct ExportService: PhotoLibrarySaving, Sendable {
     func saveToPhotos(_ result: CompressionResult) async throws {
         try validateOutputFile(at: result.outputURL)
         guard await hasAddOnlyPhotoLibraryAccess() else {
             throw PhotoExportError.photoLibraryAccessDenied
         }
 
-        try await PHPhotoLibrary.shared().performChanges {
-            let request = PHAssetCreationRequest.forAsset()
-            request.addResource(with: .video, fileURL: result.outputURL, options: nil)
+        do {
+            try await PHPhotoLibrary.shared().performChanges {
+                let request = PHAssetCreationRequest.forAsset()
+                request.addResource(with: .video, fileURL: result.outputURL, options: nil)
+            }
+        } catch {
+            throw PhotoExportError.saveFailed
         }
     }
 
@@ -47,11 +52,7 @@ final class ExportService: PhotoLibrarySaving {
         let currentStatus = PHPhotoLibrary.authorizationStatus(for: .addOnly)
         let status: PHAuthorizationStatus
         if currentStatus == .notDetermined {
-            status = await withCheckedContinuation { continuation in
-                PHPhotoLibrary.requestAuthorization(for: .addOnly) { status in
-                    continuation.resume(returning: status)
-                }
-            }
+            status = await PHPhotoLibrary.requestAuthorization(for: .addOnly)
         } else {
             status = currentStatus
         }
